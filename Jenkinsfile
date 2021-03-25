@@ -56,7 +56,13 @@ waitForQualityGate abortPipeline: true
           )
         }
       }
-
+	stage('Build Image')
+	{
+		steps
+		{
+			bat "docker build -t assignment04image:${BUILD_NUMBER} ."
+		}
+	}
 	stage ("Docker Deployment")
 	{
 	steps
