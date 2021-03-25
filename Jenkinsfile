@@ -66,7 +66,7 @@ waitForQualityGate abortPipeline: true
 	{
 	steps
 	{
-		bat "docker run --name assignment04container -d -p 9050:8080 assignment04image:${BUILD_NUMBER}"
+		bat "docker run --name assignmentDevcontainer -d -p 9050:8080 assignment04image:${BUILD_NUMBER}"
 		}
 	}
 	
