@@ -26,11 +26,8 @@ pipeline {
           }
         }
       }
-        stage("Deploy"){
-            steps{
-               deploy adapters: [tomcat7(credentialsId: 'user-tomcat', path: '', url: 'http://localhost:8084/')], contextPath: 'addition', war: '**/*.war'
-            }
-        }
+       
+	    /*
         stage("Quality Gate") {
 steps {
 timeout(time: 30, unit: 'MINUTES') {
@@ -38,6 +35,7 @@ waitForQualityGate abortPipeline: true
 }
 }
 }
+*/
         stage("Upload to artifactory") {
         steps {
           rtMavenDeployer (
@@ -56,6 +54,7 @@ waitForQualityGate abortPipeline: true
           )
         }
       }
+	    /*
 	stage('Build Image')
 	{
 		steps
@@ -70,6 +69,12 @@ waitForQualityGate abortPipeline: true
 		bat "docker run --name assignment04container -d -p 9050:8080 assignment04image:${BUILD_NUMBER}"
 		}
 	}
+	*/
+	 stage("Deploy"){
+            steps{
+               deploy adapters: [tomcat7(credentialsId: 'user-tomcat', path: '', url: 'http://localhost:8084/')], contextPath: 'addition', war: '**/*.war'
+            }
+        }
 }
 
     post {
