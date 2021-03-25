@@ -59,7 +59,7 @@ waitForQualityGate abortPipeline: true
 	{
 		steps
 		{
-			bat "docker build -t assignment04container:${BUILD_NUMBER} ."
+			bat "docker build -t assignment04image:${BUILD_NUMBER} ."
 		}
 	}
 	stage ("Docker Deployment")
