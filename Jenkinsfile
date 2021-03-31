@@ -62,6 +62,14 @@ waitForQualityGate abortPipeline: true
 			bat "docker build -t assignment04image:${BUILD_NUMBER} ."
 		}
 	}
+	stage("Cleaning Previous Deployment"){
+		steps{
+			catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+			bat "docker stop assignmentDevcontainer"
+			bat "docker rm -f assignmentDevcontainer"
+			}
+		}
+	}
 	stage ("Docker Deployment")
 	{
 	steps
